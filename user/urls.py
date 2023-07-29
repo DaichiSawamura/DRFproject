@@ -1,6 +1,6 @@
 from user.apps import UserConfig
 
-app_name = UserConfig
+app_name = UserConfig.name
 
 urlpatterns = [
 

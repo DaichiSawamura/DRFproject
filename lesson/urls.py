@@ -5,7 +5,7 @@ from lesson.apps import LessonConfig
 from lesson.views import LessonViewSet, LessonCreateAPIView, LessonListAPIView, LessonRetrieveAPIView, \
     LessonUpdateAPIView, LessonDestroyAPIView
 
-app_name = LessonConfig
+app_name = LessonConfig.name
 
 router = DefaultRouter()
 router.register(r'course', LessonViewSet, basename='course')
