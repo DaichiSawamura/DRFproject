@@ -19,3 +19,13 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+
+
+class Payment(models.Model):
+    username = models.CharField(max_length=50, verbose_name='пользователь')
+    payment_date = models.DateTimeField(auto_now=True, verbose_name='дата оплаты')
+    payment_course = models.BooleanField(default=False, verbose_name='оплачен курс')
+    payment_lesson = models.BooleanField(default=False, verbose_name='оплачен урок')
+    payment_amount = models.IntegerField(default=0, verbose_name='сумма оплаты')
+    payment_cash = models.BooleanField(default=False, verbose_name='оплата наличными')
+    payment_transfer = models.BooleanField(default=False, verbose_name='оплата переводом')
