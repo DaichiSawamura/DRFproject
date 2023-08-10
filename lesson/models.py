@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 from user.models import NULLABLE
@@ -8,6 +9,7 @@ class Lesson(models.Model):
     description = models.TextField(verbose_name='Описание', **NULLABLE)
     image = models.ImageField(verbose_name='Изображение', **NULLABLE)
     link = models.CharField(max_length=100, verbose_name='ссылка на видео')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE)
 
     def __str__(self):
         return f'{self.title}'

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 from lesson.models import Lesson
@@ -9,6 +10,7 @@ class Course(models.Model):
     image = models.ImageField(verbose_name='Изображение', **NULLABLE)
     description = models.TextField(verbose_name='Описание', **NULLABLE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, **NULLABLE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE)
 
     def __str__(self):
         return f'{self.title}'
