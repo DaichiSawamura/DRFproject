@@ -10,6 +10,8 @@ class User(AbstractUser):
     phone = models.IntegerField(unique=True, verbose_name='номер телефона', **NULLABLE)
     city = models.CharField(max_length=50, verbose_name='город', **NULLABLE)
     image = models.ImageField(**NULLABLE, verbose_name='Изображение')
+    is_active = models.BooleanField(default=True, verbose_name='активность')
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
