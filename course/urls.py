@@ -1,9 +1,9 @@
-
+from django.urls import path
 
 from course.apps import CourseConfig
 from rest_framework.routers import DefaultRouter
 
-from course.views import CourseViewSet
+from course.views import CourseViewSet, CreateCheckoutSessionView
 
 app_name = CourseConfig.name
 
@@ -11,5 +11,5 @@ router = DefaultRouter()
 router.register(r'course', CourseViewSet, basename='course')
 
 urlpatterns = [
-
+    path('create-checkout-session/<int:pk>/', CreateCheckoutSessionView.as_view(), name='create-checkout-session')
 ] + router.urls
