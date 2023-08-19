@@ -1,10 +1,10 @@
-
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.response import Response
 
 from config import settings
-from course.models import Course, StripeCheckoutSession
-from course.serializers import CourseSerializer
+from course.models import Course, StripeCheckoutSession, Subscription
+from course.serializers import CourseSerializer, SubscriptionSerializer
 import stripe
 from django.urls import reverse
 from django.views import View
@@ -14,6 +14,18 @@ from django.shortcuts import get_object_or_404, redirect
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
+    permission_classes = [AllowAny]
+
+
+class SubscriptionCreateAPIView(generics.CreateAPIView):
+    serializer_class = SubscriptionSerializer
+    queryset = Subscription.objects.all()
+    permission_classes = [AllowAny]
+
+
+class SubscriptionUpdateView(generics.UpdateAPIView):
+    serializer_class = SubscriptionSerializer
+    queryset = Subscription.objects.all()
     permission_classes = [AllowAny]
 
 
@@ -44,4 +56,3 @@ class CreateCheckoutSessionView(View):
         )
 
         return redirect(checkout_session.url)
-
